@@ -1,0 +1,56 @@
+/* pink-theme.css */
+
+body {
+    background-color: #fff0f6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #4a4a4a;
+}
+
+.card {
+    background-color: #ffe0ec;
+    border: 1px solid #f5a8c7;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(245, 168, 199, 0.3);
+}
+
+.card-header {
+    background-color: #ffc4dd;
+    font-weight: bold;
+    color: #6c1a3a;
+}
+
+.btn-primary {
+    background-color: #ff66a3;
+    border-color: #ff66a3;
+}
+
+.btn-primary:hover {
+    background-color: #e05590;
+    border-color: #e05590;
+}
+
+.btn-outline-secondary {
+    color: #ff66a3;
+    border-color: #ff66a3;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #ffccde;
+    color: #6c1a3a;
+}
+
+.form-control {
+    border-color: #f5a8c7;
+}
+
+.form-label {
+    color: #6c1a3a;
+}
+
+a {
+    color: #d63384;
+}
+
+a:hover {
+    color: #b0276b;
+}
