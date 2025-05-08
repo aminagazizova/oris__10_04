@@ -1,9 +1,11 @@
+# Замените импорт
+# from resources import sport_schema, ValidationError
 from flask import request, url_for, render_template, redirect, flash
 from flask.views import MethodView
 from flask_sqlalchemy import SQLAlchemy
-
 from forms import SportCreateForm, SportUpdateForm, SportDeleteForm
-from models import Sport  # Предполагается, что у тебя есть модель Sport
+from models import Sport
+
 
 
 class SportList(MethodView):
@@ -90,18 +92,23 @@ class SportCreate(MethodView):
         form = SportCreateForm()
         return render_template('sport/create.html', form=form)
 
+    # В классе SportCreate измените метод post:
     def post(self):
         form = SportCreateForm(request.form)
         if form.validate():
-            item = Sport(
-                name=form.name.data,
-                sport_type=form.sport_type.data,
-                age=form.age.data,
-                description=form.description.data
-            )
-            self.engine.session.add(item)
-            self.engine.session.commit()
-            flash("Спортсмен успешно добавлен!", 'success')
-            return redirect(url_for('sport.list'))
-        flash("Ошибка при создании спортсмена", 'error')
+            try:
+                item = Sport(
+                    name=form.name.data,
+                    sport_type=form.sport_type.data,
+                    age=form.age.data,
+                    description=form.description.data
+                )
+                self.engine.session.add(item)
+                self.engine.session.commit()
+                flash("Спортсмен успешно добавлен!", 'success')
+                return redirect(url_for('sport.list'))
+            except Exception as e:
+                flash(f"Ошибка при сохранении: {str(e)}", 'error')
+        else:
+            flash("Ошибка в форме: " + str(form.errors), 'error')
         return render_template('sport/create.html', form=form)
